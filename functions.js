@@ -22,6 +22,42 @@ let date = new Date(writeDate);
             return false;        //не высокосный 
         } 
     };
+	
+// количество высокосных годов
+var countLeapYears = function(y,m,d){
+       var yearNow = new Date().getFullYear(),
+           yearThen = y,
+           beginYear = 0,
+           endYear = 0,
+           leapYearCount = 0;
+
+       var isLeapYear = function(year){
+         return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+       }
+
+       if(yearNow < y){
+          beginYear = yearNow;
+          endYear = y;
+       }else if(yearNow > y){
+          beginYear = y;
+          endYear = yearNow;
+       }else if(yearNow == y){
+          beginYear = y;
+          endYear = y;
+       }
+
+       for(i = beginYear; i <= endYear; i++){
+         if(isLeapYear(i)){
+           leapYearCount++;
+         }
+       }
+
+       return leapYearCount;
+}
+
+console.log(countLeapYears(2005,10,12)); // 3
+console.log(countLeapYears(2020,10,12)); // 2
+console.log(countLeapYears(2016,10,12)); // 1
 
 // Количество дней в месяце
 Date.prototype.getMonthDayCount = function() {
