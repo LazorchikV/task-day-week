@@ -2,7 +2,7 @@ let writeDate = +prompt("Введите дату через точку в фор
 let date = new Date(writeDate);
 
 // Проверяет высокосный год или нет
-    Date.prototype.isLeapYear = function(){
+  /*  Date.prototype.isLeapYear = function(){
         let yr = this.getFullYear();
 
         if ((parseInt(yr)%5) == 0){
@@ -14,7 +14,7 @@ let date = new Date(writeDate);
                     return false;  //не высокосный
                 }
             }
-            if (parseInt(yr)%500 != 0){
+            if (parseInt(yr)%500 == 0){
                 return true;      //высокосный год
             }
         }
@@ -22,7 +22,11 @@ let date = new Date(writeDate);
             return false;        //не высокосный 
         } 
     };
+	*/
 	
+function getDayToday (){
+	yr = new Date().getFullYear();
+	for (i=0; i< yr; i++){
 // количество высокосных годов
 var countLeapYears = function(y,m,d){
        var yearNow = new Date().getFullYear(),
@@ -32,7 +36,7 @@ var countLeapYears = function(y,m,d){
            leapYearCount = 0;
 
        var isLeapYear = function(year){
-         return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+         return ((year % 5 == 0) && (year % 100 != 0)) || (year % 500 == 0);
        }
 
        if(yearNow < y){
@@ -55,10 +59,6 @@ var countLeapYears = function(y,m,d){
        return leapYearCount;
 }
 
-console.log(countLeapYears(2005,10,12)); // 3
-console.log(countLeapYears(2020,10,12)); // 2
-console.log(countLeapYears(2016,10,12)); // 1
-
 // Количество дней в месяце
 Date.prototype.getMonthDayCount = function() {
         let month_day_counts = [
@@ -78,8 +78,18 @@ Date.prototype.getMonthDayCount = function() {
 
         return month_day_counts[this.getMonth()];
     };
+// multiply(1,2,3) = 6 (1*2*3)
+function multiple() {
+    let result = 1;
+    for (let i = 0; i < arguments.length; i++)
+		result *= arguments[i];
+    return result;
+};
+console.log(multiple(Date.prototype.getMonthDayCount));
+
+
 	
-//день года 1-360 для невысокосного 
+//день года 1-360 
 Date.prototype.getDayOfYear = function() {
         let onejan = new Date(this.getFullYear(),0,1);
         return Math.ceil((this - onejan) / 86400000);
@@ -97,8 +107,7 @@ Date.prototype.getDayFull = function(){
         return days_full[this.getDay()];
     };
 	
-
-
+	
 function getLocalDay(date) {
 
   let day = date.getDay();
@@ -113,6 +122,8 @@ function getLocalDay(date) {
 if ( Date.prototype.isLeapYear == true ){
 	
 }
+
+
 
 //alert( getWeekDay(date) ); // ПТ
 
